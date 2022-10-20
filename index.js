@@ -18,4 +18,61 @@ async function loadBooks() {
   const container = document.querySelector("#data-output");
   container.innerHTML = template;
 }
+
 loadBooks();
+
+
+// POST request
+const data = {
+  "books": [
+    {
+      "id": 9,
+      "title": "TEST123"
+    }
+  ]
+};
+
+async function requestPOST() {
+  const response = await fetch("db.json", {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: data,
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log('Success:', data);
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    })
+};
+
+requestPOST();
+
+
+
+// const data = {
+//   "books": [
+//     { "id": 1,
+//       "title": "TEST123"
+//     }
+//   ]
+// };
+
+// fetch("db.json", {
+//   method: 'PUT', // 'POST' or 'PUT'
+//   headers: {
+//     'Content-Type': 'application/json',
+//   },
+//   body: data,
+// })
+//   .then((response) => response.json())
+//   .then((data) => {
+//     console.log('Success:', data);
+//   })
+//   .catch((error) => {
+//     console.error('Error:', error);
+//   });
